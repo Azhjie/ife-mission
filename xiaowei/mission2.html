@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>html标签</title>
+    <style>
+        body, p, input {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 1280px;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+
+        p {
+            text-indent: 2em;
+        }
+
+        h1 {
+            width: 150px;
+            height: 40px;
+            margin: 10px 30px;
+            background: url("https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png") no-repeat;
+        }
+
+        h2 {
+
+        }
+
+        h3 {
+            color: #999;
+        }
+
+        .cf::before, .cf::after {
+            display: table;
+            content: "";
+            clear: both;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+
+        /*头部区域*/
+        header {
+            background-color: #333;
+        }
+
+        nav {
+            line-height: 30px;
+            margin-right: 10px;
+        }
+
+        nav li {
+            float: left;
+            margin: auto 10px;
+            font-size: 10px;
+        }
+
+        nav li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav li .active {
+            color: #ccc;
+
+        }
+
+        /*/头部区域*/
+
+        /*主体区域*/
+        article {
+            font-size: 16px;
+            background: #ddd;
+            padding: 20px;
+        }
+
+        article section {
+            padding: 20px;
+            background: white;
+            box-shadow: -2px -2px 2px #666 inset;
+            margin-bottom: 20px;
+        }
+
+        article section ul {
+            list-style: none;
+        }
+
+        article section div > span {
+            font-size: 10px;
+            color: #999;
+        }
+
+        article section figure {
+            font-size: 10px;
+            text-align: center;
+            width: 100px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        article section table {
+            font-size: 12px;
+            width: 100%;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc
+        }
+
+        article section table th {
+            padding: 5px;
+            text-align: left;
+            color: #fff;
+            background: #333;
+            border-left: 1px solid #ccc;
+        }
+
+        article section table td {
+            padding: 5px;
+            border-left: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+
+        article section table .table-end {
+
+            background: #ccc;
+        }
+
+        /*/主体区域*/
+        /*侧边栏*/
+        aside {
+            background: #ddd;
+            padding: 0 40px 20px 20px;
+        }
+
+        aside section {
+            background: white;
+            padding: 20px;
+            box-shadow: -2px -2px 2px #666 inset;
+            margin-bottom: 20px;
+        }
+
+        aside section h2 {
+            font-size: 1rem;
+        }
+
+        aside section form p {
+            padding: 5px;
+        }
+
+        aside section form {
+
+        }
+        aside section form ul li {
+            list-style: none;
+            margin-left: 200px;
+            margin-bottom: 10px;
+        }
+
+        aside section form ul li label{
+            text-align: right;
+            display: inline-block;
+            width: 120px;
+        }
+        aside section form ul li p{
+            color: #ccc;
+            margin-left: 85px;
+        }
+        aside section form button {
+            color: white;
+            font-size: 16px;
+            width: 100%;
+            height: 40px;
+            background: #3a63da;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        /*/侧边栏*/
+
+        /*底部*/
+        footer{
+            height:80px;
+            text-align: center;
+            background: #222;
+            color: white;
+            line-height: 50px;
+        }
+        /*/底部*/
+    </style>
+</head>
+<body>
+<header class="cf">
+    <h1 class="left"></h1>
+    <nav class="right">
+        <ul class="cf">
+            <li><a href="#">导航连接一</a></li>
+            <li><a href="#">导航连接二</a></li>
+            <li><a href="#">导航连接三</a></li>
+            <li><a href="#" class="active">导航连接四</a></li>
+        </ul>
+    </nav>
+</header>
+<article>
+    <section>
+        <h2>文章一级标题</h2>
+        <h3>文章二级标题</h3>
+        <div>
+            <span>文章作者</span>
+            <span>文章发表时间</span>
+        </div>
+        <p>
+            这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+            <br>这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+            <br><a href="#">这里有连接</a>这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+            <b>呵呵呵粗吧？</b>这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+        </p>
+        <img src="" alt="没图" height="200px" width="200px">
+        <p>这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+            <br>换行走起。这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+            <br>换行走起。<a href="#">这里有连接</a>这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+            <b>呵呵呵粗吧？</b>这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+        </p>
+    </section>
+    <section>
+        <h2>新文章一级标题</h2>
+        <h3>文章二级标题</h3>
+        <div>
+            <span>文章作者</span>
+            <span>文章发表时间</span>
+        </div>
+        <p>
+            这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+            <br>这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+            <br><a href="#">这里有连接</a>这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+            <b>呵呵呵粗吧？</b>这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落
+        </p>
+        <img src="" alt="没图" height="200px" width="200px">
+        <ul>
+            <li>列表项目一</li>
+            <li>列表项目二</li>
+            <li>列表项目三</li>
+        </ul>
+    </section>
+    <section>
+        <h2>图片</h2>
+        <figure>
+            <figcaption>好看的图片</figcaption>
+            <img src="" alt="没图" height="100px" width="100px">
+        </figure>
+        <figure>
+            <figcaption>好看的图片</figcaption>
+            <img src="" alt="没图" height="100px" width="100px">
+        </figure>
+        <figure>
+            <figcaption>好看的图片</figcaption>
+            <img src="" alt="没图" height="100px" width="100px">
+        </figure>
+        <figure>
+            <figcaption>好看的图片</figcaption>
+            <img src="" alt="没图" height="100px" width="100px">
+        </figure>
+        <figure>
+            <figcaption>好看的图片</figcaption>
+            <img src="" alt="没图" height="100px" width="100px">
+        </figure>
+        <figure>
+            <figcaption>好看的图片</figcaption>
+            <img src="" alt="没图" height="100px" width="100px">
+        </figure>
+        <figure>
+            <figcaption>好看的图片</figcaption>
+            <img src="" alt="没图" height="100px" width="100px">
+        </figure>
+        <figure>
+            <figcaption>好看的图片</figcaption>
+            <img src="" alt="没图" height="100px" width="100px">
+        </figure>
+        <figure>
+            <figcaption>好看的图片</figcaption>
+            <img src="" alt="没图" height="100px" width="100px">
+        </figure>
+        <figure>
+            <figcaption>好看的图片</figcaption>
+            <img src="" alt="没图" height="100px" width="100px">
+        </figure>
+    </section>
+    <section>
+        <h2>最后一篇文章一级标题</h2>
+        <h3>文章二级标题</h3>
+        <div>
+            <span>文章作者</span>
+            <span>文章发表时间</span>
+        </div>
+        <ol>
+            <li>排名1</li>
+            <li>排名2</li>
+            <li>排名3</li>
+        </ol>
+        <p>下面是一个表格，给表格加了一个border=“1”好让你看出是一个表格</p>
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th>表头</th>
+                <th>表头</th>
+                <th>表头</th>
+            </tr>
+            <tr>
+                <td>表内容单元格</td>
+                <td>表内容单元格</td>
+                <td><a href="#">操作</a></td>
+            </tr>
+            <tr>
+                <td>表内容单元格</td>
+                <td>表内容单元格</td>
+                <td><a href="#">操作</a></td>
+            </tr>
+            <tr>
+                <td>表内容单元格</td>
+                <td>表内容单元格</td>
+                <td><a href="#">操作</a></td>
+            </tr>
+            <tr>
+                <td>表内容单元格</td>
+                <td>表内容单元格</td>
+                <td><a href="#">操作</a></td>
+            </tr>
+            <tr class="table-end">
+                <td>总计</td>
+                <td colspan="2">1000</td>
+            </tr>
+        </table>
+    </section>
+</article>
+<aside>
+    <section>
+        <h2>这里以后是一个侧栏，这是侧栏标题</h2>
+        <form action="#">
+            <ul>
+
+                <li>
+                    <label for="email">请输入邮箱地址：</label>
+                    <input type="email" id="email" placeholder="这是一个文本框">
+                </li>
+                <li>
+                    <p>邮箱地址请按要求格式输入</p>
+                </li>
+                <li>
+                    <label for="psw">请输入密码：</label>
+                    <input type="password" id="psw" placeholder="这是一个文本框">
+                </li>
+                <li>
+                    <label for="psw2">请重复输入密码：</label>
+                    <input type="password" id="psw2" placeholder="这是一个文本框">
+                    <p>密码请为6-16位英文数字</p>
+                </li>
+
+
+                <li>
+                    <label>性别：</label>
+                    <input type="radio" title="男" checked="checked" name="Sex" value="male">
+                    男
+                    <input type="radio" title="女" name="Sex" value="female">
+                    女</li>
+                <li>
+                    <label>城市：</label>
+                    <select name="city" title="城市">
+                        <option value="1">北京</option>
+                        <option value="2">北京</option>
+                        <option value="3">北京</option>
+                        <option value="4">北京</option>
+                    </select>
+                </li>
+                <li>
+                <label>爱好：</label>
+                    <input type="checkbox" name="sport" title="运动">运动
+                    <input type="checkbox" name="art" title="艺术">艺术
+                    <input type="checkbox" name="phy" title="科学">科学
+                </li>
+                <li>
+                    <label>个人描述：</label>
+                    <textarea title="content" id="" cols="100" rows="5">多行文本框，输入个人描述吧。</textarea>
+                </li>
+            </ul>
+            <button type="submit">确认提交</button>
+        </form>
+    </section>
+</aside>
+<footer>
+    版权所有©
+</footer>
+</body>
+</html>
