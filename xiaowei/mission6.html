@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>报纸排版</title>
+    <style>
+        /*公共样式*/
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            padding: 0;
+            margin: 0 auto;
+            width: 980px;
+            height: 1386px;
+            font-size: 12px;
+            font-family: '黑体';
+        }
+
+        h1, h2, h3, h4 {
+            font-family: '微软雅黑';
+            font-weight: 100;
+        }
+
+        .cf::before, .cf::after {
+            display: table;
+            content: "";
+            clear: both;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+
+        /*/公共样式*/
+        header {
+            position: relative;
+            width: 892px;
+            height: 61px;
+            margin: 0 auto;
+            border-bottom: 2px solid #938e8c;
+        }
+
+        header div {
+            position: relative;
+            width: 110px;
+            height: 61px;
+            background: #d45d5c;
+        }
+
+        header div p {
+            color: white;
+            position: absolute;
+            left: 7px;
+            bottom: 3px;
+        }
+
+        header > p {
+            color: #d45d5c;
+            position: absolute;
+            right: 1px;
+            bottom: 3px;
+        }
+
+        /*上面是头部条*/
+        /*下面是主体的头部*/
+        main {
+            width: 892px;
+            margin: 0 auto;
+        }
+
+        .top {
+            height: 301px;
+            margin: 35px 0 0 0;
+        }
+
+        .top .pic {
+            width: 641px;
+            height: 301px;
+            background: url("http://gss0.baidu.com/9rkZbzqaKgQUohGko9WTAnF6hhy/mms-res/fed/ife/ife_tutor/课程配图.3fb31f3e5af7e8d7.jpg") no-repeat;
+            background-size: cover;
+        }
+
+        .top .pic::after, .top .pic::before {
+            width: 191px;
+            height: 301px;
+            display: block;
+            content: "";
+        }
+
+        .top .pic::after {
+            float: left;
+            background: rgba(66, 140, 89, .5);
+        }
+
+        .top .pic::before {
+            float: right;
+            background: rgba(204, 118, 128, .5);
+        }
+
+        .top .info {
+            width: 202px;
+            height: 301px;
+            border-top: 2px solid #cc8091;
+        }
+
+        .top .info .info-top {
+            margin-top: 7px;
+        }
+
+        .top .info h2, .top .info h3 {
+            height: 28px;
+            font-size: 16px;
+            font-weight: 500;
+            display: inline-block;
+            border-bottom: 1px #886886 solid;
+        }
+
+        .top .info h2:first-letter, .top .info h3:first-letter {
+            font-size: 24px;
+        }
+
+        .top .info small {
+            margin-top: 1px;
+        }
+
+        .top .info > p {
+            font-family: '楷体';
+            font-size: 12px;
+        }
+
+        .top .info-count {
+            font-family: '微软雅黑';
+        }
+
+        .top .info-count > p {
+            color: #75b86b;
+            font-size: 116px;
+            font-style: oblique;
+            font-weight: 500;
+            margin-top: 10px;
+            margin-left: -20px;
+        }
+
+        .top .info-count .css-num {
+            margin-top: -15px;
+            color: #cc8091;
+            font-size: 55px;
+        }
+
+        .top .info-count .css {
+            margin-top: 10px;
+            color: #231815;
+            font-size: 12px;
+        }
+
+        .top .info-count .css div {
+            margin-bottom: 5px;
+            color: #cc8091;
+            font-size: 21px;
+        }
+
+        .top .info-count .css p {
+            margin-top: -12px;
+        }
+
+        /*上面是主体的头部*/
+        /*下面是主体的中部*/
+        .middle {
+            margin-top: 40px;
+        }
+
+        .middle ul {
+            list-style: none;
+        }
+
+        .middle ul li {
+            float: left;
+            color: #767777;
+            width: 230px;
+            height: 166px;
+            margin-right: 28px;
+        }
+
+        .middle ul li h3 {
+            font-size: 16px;
+            display: inline-block;
+            border-bottom: 1px solid;
+            margin-bottom: 10px;
+        }
+
+        .middle ul .what h3 {
+            color: #418c59;
+            border-color: #418c59;
+        }
+
+        .middle ul .when h3 {
+            color: #d2994f;
+            border-color: #d2994f;
+        }
+
+        .middle ul .how h3 {
+            color: #cc7680;
+            border-color: #cc7680;
+        }
+
+        .middle ul .how > p {
+            margin-bottom: 5px;
+        }
+
+        .middle ul .how div {
+            margin-top: 30px;
+            color: #231815;
+        }
+
+        .middle ul .how div span {
+            color: #cd4a48;
+        }
+
+        /*上面是主体的中部*/
+        /*下面是主体的底部*/
+        .bottom {
+            height: 605px;
+            margin-top: 65px;
+        }
+
+        .bottom .passage .title {
+            width: 415px;
+            height: 150px;
+            border-bottom: 2px solid #10456b;
+        }
+
+        .bottom .passage .title .english-title {
+            margin-top: 5px;
+            line-height: 40px;
+            font-size: 42px;
+            width: 400px;
+            color: #11456b;
+        }
+
+        .bottom .passage .title .english-title b {
+            font-size: 72px;
+            font-style: oblique;
+            color: #f5e327;
+        }
+
+        .bottom .passage .title .chinese-title {
+            margin-top: 5px;
+            font-size: 33px;
+            color: #11456b;
+        }
+
+        .bottom .passage .content {
+            position: relative;
+            padding-top: 25px;
+            width: 415px;
+            height: 426px;
+            font-size: 12px;
+            line-height: 16px;
+            color: #767777;
+
+        }
+
+        .bottom .passage .content b {
+            float: left;
+            line-height: 65px;
+            font-size: 70px;
+            color: #f5e327;
+
+        }
+
+        .bottom .passage .content img {
+            padding: 6px 6px 6px 10px;
+            float: right;
+
+        }
+        .bottom .catalog {
+            width: 458px;
+            height: 605px;
+        }
+        .bottom .catalog .preview{
+            position: relative;
+            height: 257px;
+
+        }
+        .bottom .catalog .preview .cover{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(0,0,0,.4);
+
+        }
+        .bottom .catalog .preview .cover .title{
+            color: white;
+            font-size: 26px;
+            line-height: 60px;
+            margin-left: 38px;
+            padding: 5px 0 5px 12px;
+            border-left: 3px solid #72b16a;
+        }
+        .bottom .catalog .preview .cover .detail{
+            font-style: oblique;
+            color: #72b16a;
+        }
+
+
+
+        .bottom .catalog .catalog-container {
+            position: relative;
+            background: #eeedd6;
+            margin-top:30px ;
+            height: 318px;
+                 }
+        .bottom .catalog .catalog-container .list{
+            padding-left: 25px;
+            height: 157px;
+        }
+        .bottom .catalog .catalog-container .list ul {
+
+            position: absolute;
+            list-style: none;
+            color: #5a5b5b;
+            font-size: 16px;
+            padding: 20px;
+        }
+        .bottom .catalog .catalog-container .list ul li{
+            line-height: 40px;
+        }
+        .bottom .catalog .catalog-container .list  .list-left li {
+            position: relative;
+            color: #5a5b5b;
+            font-size: 16px;
+        }
+        .bottom .catalog .catalog-container .list  .list-left li::before {
+            display: block;
+            position: absolute;
+            left: -13px;
+            top:20px;
+            content: "";
+            border-width:0 5px 5px;
+            border-style:solid;
+            border-color:transparent transparent #10456b;
+
+        }
+        .bottom .catalog .catalog-container .list  .list-right {
+            right: 0;
+            color: #5a5b5b;
+            font-size: 12px;
+            font-style: oblique;
+            text-align: right;
+
+        }
+
+        .bottom .catalog .tip .tip-day{
+            width: 260px;
+            height: 160px;
+            background: #d45d5c;
+            color: white;
+        }
+        .bottom .catalog .tip .tip-day .today{
+            padding: 16px 0 0 16px;
+            font-size: 110px;
+        }
+        .bottom .catalog .tip .tip-day .tip-content{
+            margin-top: 40px;
+            padding: 8px;
+            width: 170px;
+            border-left: 2px white solid;
+        }
+        .bottom .catalog .tip .tip-day .tip-content .tip-title{
+            font-size: 21px;
+            font-style: oblique;
+            line-height: 24px;
+        }
+        .bottom .catalog .tip .tip-day .tip-content .tip-detail{
+            font-size: 12px;
+            line-height: 12px;
+        }
+
+
+
+
+        .bottom .catalog .tip .tip-wisdom{
+            font-size: 14px;
+            line-height: 16px;
+            color: #5a5b5b;
+            width: 180px;
+            margin-top:30px;
+            margin-left: 15px;
+        }
+        .bottom .catalog .tip .tip-wisdom p{
+            text-align: left;
+            text-indent: 3em;
+            position: relative;
+        }
+        .bottom .catalog .tip .tip-wisdom p::after,
+        .bottom .catalog .tip .tip-wisdom p::before{
+            display: inline-block;
+            position: absolute;
+            color: #d45d5c;
+            height: 0;
+            font-size: 72px;
+            line-height: 6px;
+        }
+        .bottom .catalog .tip .tip-wisdom p::before{
+            top: 20px;
+            left: -83px;
+            content: "“";
+        }
+        .bottom .catalog .tip .tip-wisdom p::after{
+            right: -20px;
+            bottom: -15px;
+            content: "”";
+        }
+        /*上面是主题的底部*/
+
+        /*下面是脚部*/
+        footer {
+            margin: 40px auto 0 auto;
+            width: 892px;
+            height: 60px;
+            border-top: 2px solid #938e8c;
+        }
+
+        footer p {
+            float: right;
+            color: #d45d5c;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div>
+        <p>ife.baidu.com</p>
+    </div>
+    <p>2017.2</p>
+</header>
+<main>
+    <div class="top">
+        <div class="pic left">
+        </div>
+        <div class="info right">
+            <div class="info-top">
+                <h2>ABOUT</h2> <br>
+                <h3>TECHNOLOGE</h3>
+            </div>
+            <p>
+                <i>About technologe about technologe about technologe</i>
+            </p>
+            <div class="info-count">
+                <p>700</p>
+                <div class="css-num left">3.2</div>
+                <div class="css left">
+                    <div>CSS</div>
+                    <p>cssssccsccscssc</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="middle">
+        <ul class="cf">
+            <li class="what"><h3>What</h3>
+                <p>
+                    端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端</p>
+            </li>
+            <li class="when"><h3>When</h3>
+                <p>
+                    端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端</p>
+            </li>
+            <li class="how">
+                <h3>How</h3>
+                <p>前端前端端前端前端</p>
+                <p>前端前端端前端前端前端</p>
+                <p>前端前端端前端前端</p>
+                <div>
+                    What-------- <span>40%</span><br>
+                    What-------- <span>30%</span><br>
+                    What-------- <span>30%</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="bottom">
+        <div class="passage left">
+            <div class="title cf">
+                <p class="english-title"><b>THE</b> TECHNOLOGE OF FRONT</p>
+                <p class="chinese-title">前端技术领域</p>
+            </div>
+            <div class="content"><b>前</b>
+                <p>
+                    端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端端前端前端前端前端前端前端</p>
+                <img src="http://i1.piimg.com/4851/f9dc64988c3c40cf.jpg" alt="" width="167" height="288">
+                <p>
+                    端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端。</p>
+                <p>
+                    前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前前端前端前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+
+
+            </div>
+        </div>
+        <div class="catalog right">
+            <div class="preview">
+                <img src="https://pic4.zhimg.com/v2-accc6ee155f46bc30db442ba991e5b0f_b.png" alt="" height="257px" width="458px">
+                <div class="cover">
+                    <span class="title">前端技术</span>
+                    <span class="detail">前端为什么那么多人？</span>
+                </div>
+            </div>
+            <div class="catalog-container cf">
+                <div class="list cf">
+                    <ul class="list-left">
+                        <li><p>JavaScript高级程序设计........................</p></li>
+                        <li><p>JavaScript DOM编程艺术........................</p></li>
+                        <li><p>CSS 揭秘........................................</p></li>
+                    </ul>
+                    <ul class="list-right">
+                        <li><span>看完</span></li>
+                        <li><span>看完</span></li>
+                        <li><span>看完</span></li>
+                    </ul>
+                </div>
+                <div class="tip cf">
+                    <div class="tip-day left">
+                        <p class="today left">0</p>
+                        <div class="tip-content left">
+                            <p class="tip-title">封面试邀请 <br>4000/月 头月免费</p>
+                            <p class="tip-detail">本人热爱前端，如今的功力全凭自学，求工作，求进步。</p>
+                        </div>
+                    </div>
+                    <div class="tip-wisdom left">
+                        <p>学前端大半年了，html，css，js，scss，bootstrap这些不敢说精通，但也熟练掌握，项目也做了不少。构建化也能用。最近学Vue，投了简历都不合适，基础知识不足吗？</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+<footer>
+    <p>ife.baidu.com</p>
+</footer>
+</body>
+</html>
