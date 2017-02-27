@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>技术产品官网</title>
+    <style>
+        body,ul,h1,h2,h3,div{
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            font-weight: normal;
+            outline: none;
+            font-family: "微软雅黑","Arial";
+        }
+        i{
+            position: absolute;
+            display: inline-block;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            color: #787b83;
+            text-decoration: none;
+
+        }
+        button{
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            background: none;
+        }
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+        }
+        .cf::before, .cf::after {
+            display: table;
+            content: "";
+            clear: both;
+        }
+        /*上面是样式初始化*/
+        .container{
+            width: 1280px;
+            margin: 0 auto;
+            background: url("bg.png") no-repeat;
+        }
+/*下面是头部条*/
+
+        /*下面是头部-logo*/
+        header{
+            height: 56px;
+            background: white;
+        }
+        header h1{
+            position: relative;
+            padding: 14px 23px 19px 100px;
+        }
+        header h1 a .logo{
+            width: 31px;
+            height: 31px;
+            top: 13px;
+            left: 60px;
+            background: url("http://i1.piimg.com/4851/7081efe62164a985.gif") no-repeat ;
+        }
+        header h1 a{
+            font-size: 21px;
+            color: #393a3a;
+        }
+        /*下面是头部-登录按钮*/
+        header button{
+            position: relative;
+            color: #e74f4d;
+            margin-right: 48px;
+            padding: 15px 20px 21px 30px;
+        }
+        header button .login{
+            width: 14px;
+            height: 17px;
+            top:16px;
+            left: 11px;
+            background: url("http://p1.bqimg.com/4851/7461893f3f071b45.png") no-repeat ;
+        }
+        /*下面是头部-导航栏*/
+        header ul li{
+            float: left;
+
+        }
+        header ul li a{
+            display: block;
+            padding: 14px 20px 21px 25px;
+        }
+        header ul li .active,header ul li a:hover{
+            color: #e74f4d;
+            border-bottom:3px solid #e74f4d;
+        }
+        /*以上是头部条*/
+/*下面是导航栏*/
+        /*下面是导航栏-广告banner*/
+        nav .banner{
+            position: relative;
+            height:691px;
+            background: url("http://p1.bqimg.com/4851/f549cbd2abfe6886.jpg") no-repeat;
+            color: white;
+        }
+        nav .banner h2{
+            position: absolute;
+            top: 216px;
+            left: 115px;
+            font-size: 60px;
+        }
+        nav .banner p{
+            position: absolute;
+            top: 283px;
+            left: 125px;
+            font-size: 21px;
+            line-height: 32px;
+        }
+        nav .banner button{
+            letter-spacing:3px;
+            position: absolute;
+            top: 425px;
+            left: 125px;
+            width: 331px;
+            height: 69px;
+            color: white;
+            font-size: 30px;
+            background: #e74f4d;
+        }
+        /*上面是导航栏-广告banner*/
+        /*下面是导航栏-介绍栏*/
+        nav .introduce{
+            position: relative;
+            height: 250px;
+        }
+        nav .introduce ul{
+
+        }
+        nav .introduce ul li{
+            float: left;
+            padding: 133px 0 0 0;
+
+        }
+        nav .introduce ul li a{
+            display: inline-block;
+            text-align: center;
+            padding: 0 80px;
+            width: 154px;
+            height: 51px;
+        }
+        nav .introduce ul li +li a{
+            border-left: 2px solid #aaa;
+        }
+        .icon-1{
+
+        }
+ /*下面是主体*/
+        /*下面是主体-新世界*/
+        main .newWorld{
+            height: 360px;
+            background: #edecec;
+        }
+        /*下面是主体-定位*/
+        main .location{
+            height:340px;
+            background: #c0a9a3;
+        }
+        /*下面是主体-活动*/
+        main .campaign{
+            height:604px;
+            background: #f7f7f7;
+        }
+        /*下面是主体-新时代*/
+        main .newTime{
+            height: 1087px;
+            background: #e74f4d;
+        }
+        /*下面是主体-加入*/
+        main .join{
+            height: 750px;
+            background: white;
+        }
+/*下面是脚部*/
+        /*下面是脚部-联系*/
+        footer {
+            height: 416px;
+            background: #32353e;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="cf">
+        <h1 class="company left">
+            <a href="#"><i class="logo"></i>新世界</a>
+        </h1>
+        <button class="right" ><i class="login"></i>登录</button>
+        <ul class="right">
+            <li><a class="active" href="#">首页</a></li>
+            <li><a href="#">最新活动</a></li>
+            <li><a href="#">项目介绍</a></li>
+            <li><a href="#">爱心社区</a></li>
+            <li><a href="#">关于我们</a></li>
+        </ul>
+
+    </header>
+    <nav>
+        <div class="banner">
+            <h2>Time of new life</h2>
+            <p>新时代，年轻的人们让我们一起 <br>
+            体验新生活，享受新生活</p>
+            <button>开始体验</button>
+        </div>
+        <div class="introduce">
+            <ul class="cf">
+                <li><a href="#"><i class="icon-1"></i>打造全新的世界观，让你更爱你的生活</a></li>
+                <li><a href="#"><i class="icon-2"></i>丰富多彩的公益活动，发挥新世界的主人公意识</a></li>
+                <li><a href="#"><i class="icon-3"></i>时尚的新理念，超前体验未知的生活</a></li>
+                <li><a href="#"><i class="icon-4"></i>完善的培养机制，培养你全新的世界观</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="newWorld"></div>
+        <div class="location"></div>
+        <div class="campaign"></div>
+        <div class="newTime"></div>
+        <div class="join"></div>
+    </main>
+    <footer>
+        <div class="contact">
+            <h3>联系我们</h3>
+            <p>为了更好的获取我们最新的产品资讯，您可以留下您的电子邮箱快速订阅我们的产品资讯也可以通过以下任何方式关注我们动态</p>
+            <input type="text">
+            <ul>
+                <li><i></i></li>
+                <li><i></i></li>
+                <li><i></i></li>
+                <li><i></i></li>
+            </ul>
+        </div>
+        <div class="copyright"></div>
+    </footer>
+</div>
+</body>
+</html>

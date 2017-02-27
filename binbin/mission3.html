@@ -1,0 +1,113 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+</head>
+<body>
+
+<ul id="source">
+    <li>北京空气质量：<b>90</b></li>
+    <li>上海空气质量：<b>70</b></li>
+    <li>天津空气质量：<b>80</b></li>
+    <li>广州空气质量：<b>50</b></li>
+    <li>深圳空气质量：<b>40</b></li>
+    <li>福州空气质量：<b>32</b></li>
+    <li>成都空气质量：<b>90</b></li>
+    <li>美国圣地亚哥空气质量：<b>90</b></li>
+    <li>新日暮里空气质量：<b>50</b></li>
+    <li>幻想乡空气质量：<b>40</b></li>
+</ul>
+
+<ul id="resort">
+    <!--
+    <li>第一名：北京空气质量：<b>90</b></li>
+    <li>第二名：北京空气质量：<b>90</b></li>
+    <li>第三名：北京空气质量：<b>90</b></li>
+     -->
+
+</ul>
+
+<button id="sort-btn">排序</button>
+
+<script type="text/javascript">
+
+    /**
+     * getData方法
+     * 读取id为source的列表，获取其中城市名字及城市对应的空气质量
+     * 返回一个数组，格式见函数中示例
+     */
+    function getData() {
+        var city, num, cityIndex, index, data = [];
+
+        var nodeList = document.getElementById("source").querySelectorAll("li");
+
+        for (var i = 0; i < nodeList.length; i++) {
+            cityIndex = nodeList[i].innerText.indexOf("空");
+            city = nodeList[i].innerText.slice(0, cityIndex);//获取城市名
+            index = nodeList[i].innerText.indexOf("：");
+            num = nodeList[i].innerText.slice(index + 1);//获取空气质量
+
+            data.push([city, +num]);//+运算符转换为数字
+        }
+        /*
+         data = [
+         ["北京", 90],
+         ["北京", 90]
+         ……
+         ]
+         */
+
+        return data;
+
+    }
+
+    /**
+     * sortAqiData
+     * 按空气质量对data进行从小到大的排序
+     * 返回一个排序后的数组
+     */
+    function sortAqiData(data) {
+        data.sort(function (a, b) {//将数据降序排列
+            return a[1] - b[1];
+        });
+        return data;
+    }
+
+    /**
+     * render
+     * 将排好序的城市及空气质量指数，输出显示到id为resort的列表中
+     * 格式见ul中的注释的部分
+     */
+    function render(data) {
+        var rank = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
+        var resort = document.getElementById("resort");
+        resort.innerHTML = data.map(function (item, index) {//将数据格式化成html数据
+            if (index > 9) {
+                return; //只排前十名
+            }
+            return "<li>第" + (rank[index]) + "名：" + item[0] + "空气质量：<b>" + item[1] + "</b></li>";
+        }).join("");
+
+    }
+
+    function btnHandle() {
+        var aqiData = getData();
+        aqiData = sortAqiData(aqiData);
+        render(aqiData);
+    }
+
+    function init() {
+
+        // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
+        var btn = document.getElementById("sort-btn");
+        btn.onclick = function () {   //匿名函数防止btnHandle()马上执行
+            btnHandle();
+        }
+    }
+
+    init();
+
+</script>
+</body>
+</html>
