@@ -14,4 +14,4 @@
 3. [任务三·零基础JavaScript编码（三）](https://azhjie.github.io/ife-mission/binbin/mission3.html)
 4. [任务四·基础JavaScript练习（一）](https://azhjie.github.io/ife-mission/binbin/mission4.html)
 5. [任务五·基础JavaScript练习（二）](https://azhjie.github.io/ife-mission/binbin/mission5.html)
-5. [任务六·基础JavaScript练习（三）](https://azhjie.github.io/ife-mission/binbin/mission5.html)
+5. [任务六·基础JavaScript练习（三）](https://azhjie.github.io/ife-mission/binbin/mission6.html)
