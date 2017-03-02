@@ -1,86 +1,87 @@
 <!DOCTYPE>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>IFE JavaScript Task 04</title>
-    <style>
+  <meta charset="utf-8">
+  <title>IFE JavaScript Task 04</title>
+  <style>
 
-        ul{
-            list-style: none;
-            padding: 0;
-            margin: 5px;
-            height: 100%;
-        }
-         ul li{
-            float: left;
-            padding: 5px;
-            margin: 0 3px;
-            background: red;
-        }
-    </style>
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 5px;
+      height: 100%;
+    }
+
+    ul li {
+      float: left;
+      padding: 5px;
+      margin: 0 3px;
+      background: red;
+    }
+  </style>
 </head>
 
 <body>
 <input id="textNode" type="text" title="队列" value="111">
-<button class="leftIn">左侧入</button>
-<button class="rightIn">右侧入</button>
-<button class="leftOut">左侧出</button>
-<button class="rightOut">右侧出</button>
+<button id="leftIn">左侧入</button>
+<button id="rightIn">右侧入</button>
+<button id="leftOut">左侧出</button>
+<button id="rightOut">右侧出</button>
 <ul id="result" class="cf">
 </ul>
 <script>
 
-//    公共方法
+    //    公共方法
     function $(element) {
-            if(element.indexOf("#") >=0) {
-                return document.getElementById(element.slice(1));
-            }else if(element.indexOf(".") >=0) {
-                return document.getElementsByClassName(element.slice(1))[0];
-            }
+        if (element.indexOf("#") >= 0) {
+            return document.getElementById(element.slice(1));
+        }
     }
-//  使用class选择器按钮可复用
-    var leftIn = $(".leftIn");//获取按钮节点
-    var rightIn = $(".rightIn");
-    var leftOut = $(".leftOut");
-    var rightOut = $(".rightOut");
-    var text = $("#textNode");//获得input节点文本
-    var result = $("#result");//获得操作元素节点
+    /*新建数据列表数组*/
+    var dataList = [];
 
-   function nodes(text) {
-       var node=document.createElement("li");//创建节点
-       var textNode=document.createTextNode(text.value);
-       node.appendChild(textNode);
-        return node;
-   }
-//添加按钮事件
-    leftIn.onclick=function () {//在第一个子节点之前插入
-        if (/\d+/.test(text.value)){//判断是否为数字
-        result.insertBefore(nodes(text),result.firstChild);
-        text.value="";}
-    };
+    /*DOM操作节点*/
+    var leftIn = $("#leftIn");
+    var rightIn = $("#rightIn");
+    var leftOut = $("#leftOut");
+    var rightOut = $("#rightOut");
+    var text = $("#textNode");
+    var result = $("#result");
 
-    rightIn.onclick=function () {//添加新节点在后面
-        if (/\d+/.test(text.value)){//判断是否为数字
-        result.appendChild(nodes(text));
-        text.value="";
-            }
-    };
-
-    leftOut.onclick=function () {
-        if(result.firstElementChild != undefined){//判断临界点，防止报错
-            alert(result.firstElementChild.innerText);
-        result.removeChild(result.firstElementChild);//删除第一个子节点
-
-        text.value="";
+    /*渲染li节点函数*/
+    function render() {
+        result.innerHTML = "";
+        for (var i = 0; i < dataList.length; i++) {
+            result.innerHTML += "<li>" + dataList[i] + "</li>";
+        }
+    }
+    //添加按钮事件
+    leftIn.onclick = function () {//在第一个子节点之前插入
+        if (/\d+/.test(text.value)) {//判断是否为数字
+            dataList.unshift(text.value);
+            render();
         }
     };
 
-    rightOut.onclick=function () {
-        if(result.lastElementChild != undefined) {//判断临界点，防止报错
-            alert(result.lastElementChild.innerText);
-            result.removeChild(result.lastElementChild);//删除最后一个子节点
-            text.value = "";
+    rightIn.onclick = function () {//添加新节点在后面
+        if (/\d+/.test(text.value)) {//判断是否为数字
+            dataList.push(text.value);
+            render();
         }
+    };
+
+    leftOut.onclick = function () {
+        var msg=result.firstElementChild;
+        alert(msg?msg.innerHTML:"左边没什么可以删除的呢~");
+        dataList.shift();
+        render();
+    };
+
+    rightOut.onclick = function () {
+        var msg=result.lastElementChild;
+        alert(msg?msg.innerHTML:"右边没什么可以删除的呢~");
+        dataList.pop();
+        render();
     }
 
 
