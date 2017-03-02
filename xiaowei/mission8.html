@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>响应式网格</title>
+  <style>
+    body{
+      margin: 20px 0 0 0;
+      padding: 0;
+    }
+    *{
+      box-sizing: border-box;
+    }
+    div{
+      height: 50px;
+      margin: 0 10px;
+    }
+    /*以上样式重置*/
+
+    .row{
+        margin-bottom: 20px;
+      display: flex;
+      justify-content: flex-start;
+    }
+    .row [class^="col-"]{
+      border: 1px solid #999;
+      background: #eee;
+    }
+    .row .col-sm-1{
+     flex: 1;
+      max-width: 8.333%;
+    }
+    .row .col-sm-2{
+      flex: 2;
+      max-width: 16.666%;
+    }
+    .row .col-sm-3{
+     flex: 3;
+      max-width: 25%;
+    }
+    .row .col-sm-4{
+      flex: 4;
+      max-width: 33.333%;
+    }
+    .row .col-sm-5{
+      flex: 5;
+      max-width: 41.666%;
+    }
+    .row .col-sm-6{
+      flex:6;
+      max-width: 50%;
+    }
+    .row .col-sm-7{
+      flex:7;
+      max-width: 58.311%;
+    }
+    .row .col-sm-8{
+      flex:8;
+      max-width: 66.666%;
+    }
+    .row .col-sm-9{
+      flex: 9;
+      max-width: 75%;
+    }
+    .row .col-sm-10{
+      flex: 10;
+      max-width: 83.333%
+    }
+    .row .col-sm-11{
+     flex: 11;
+      max-width: 87.777%;
+    }
+    .row .col-sm-12{
+    flex: 12;
+      max-width: 100%;
+    }
+    .hidden-sm{
+      display: none;
+    }
+
+    @media screen and (max-width: 768px){
+      .hidden-sm{display: flex}
+      .hidden-xs{  display: none!important;  }
+      .row .col-xs-1{
+        flex: 1;
+        max-width: 8.333%;
+      }
+      .row .col-xs-2{
+        flex: 2;
+        max-width: 16.666%;
+      }
+      .row .col-xs-3{
+        flex: 3;
+        max-width: 25%;
+      }
+      .row .col-xs-4{
+        flex: 4;
+        max-width: 33.333%;
+      }
+      .row .col-xs-5{
+        flex: 5;
+        max-width: 41.666%;
+      }
+      .row .col-xs-6{
+        flex:6;
+        max-width: 50%;
+      }
+      .row .col-xs-7{
+        flex:7;
+        max-width: 58.311%;
+      }
+      .row .col-xs-8{
+        flex:8;
+        max-width: 66.666%;
+      }
+      .row .col-xs-9{
+        flex: 9;
+        max-width: 75%;
+      }
+      .row .col-xs-10{
+        flex: 10;
+        max-width: 83.333%
+      }
+      .row .col-xs-11{
+        flex: 11;
+        max-width: 87.777%;
+      }
+      .row .col-xs-12{
+        flex: 12;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="col-xs-6  col-sm-4"></div>
+    <div class="col-xs-6  col-sm-4"></div>
+    <div class="col-xs-1  col-sm-4 hidden-xs"></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-1  col-sm-3 hidden-xs"></div>
+    <div class="col-xs-12  col-sm-6"></div>
+    <div class="col-xs-1  col-sm-3 hidden-xs"></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3  col-sm-1"></div>
+    <div class="col-xs-6  col-sm-1"></div>
+    <div class="col-xs-3  col-sm-2"></div>
+    <div class="col-xs-1  col-sm-2 hidden-xs"></div>
+    <div class="col-xs-1  col-sm-6 hidden-xs"></div>
+  </div>
+  <div class="row hidden-sm">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-8"></div>
+  </div>
+  <div class="row hidden-sm">
+    <div class="col-xs-3"></div>
+    <div class="col-xs-3"></div>
+  </div>
+
+</body>
+</html>
