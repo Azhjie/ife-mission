@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IFE JavaScript Task 08</title>
+  <style>
+    .root {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      border: 1px solid #000000;
+      font-size: 13px;
+    }
+
+    div {
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+      margin: 0 5px;
+      flex: 1;
+      border: 1px solid #000000;
+      background: #fff;
+    }
+
+    .none {
+      width: 98%;
+      justify-content: center;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript和多叉树</h1>
+<div class="root">Super
+  <div class="node-1">Cat
+    <div class="node-2">Apple
+      <div class="node-3">Pear</div>
+      <div class="node-3">Pig</div>
+      <div class="node-3">cola</div>
+      <div class="node-3">Soccer</div>
+    </div>
+    <div class="node-2">Phone
+    </div>
+    <div class="node-2">Boo
+      <div class="node-3">Book</div>
+      <div class="node-3">School</div>
+    </div>
+  </div>
+  <div class="node-1">Note
+    <div class="node-2">Human
+      <div class="node-3">Code</div>
+      <div class="node-3">Operate</div>
+      <div class="node-3">Man</div>
+    </div>
+    <div class="node-2">Program
+      <div class="node-3">Element
+        <div class="node-4">Cat</div>
+      </div>
+      <div class="node-3">Glass</div>
+    </div>
+  </div>
+  <div class="node-1">
+    fish
+  </div>
+</div>
+<div class="none">
+  <button id="DF">深度遍历</button>
+  <form action="javascript:void(0)">
+    <input title="search" type="text" name="" id="search" placeholder="注意大小写">
+    <button type="submit" id="DFS">查询</button>
+  </form>
+</div>
+
+
+<script>
+  /*取得元素*/
+  var root = document.querySelector(".root");
+  var DF = document.querySelector("#DF");
+  var DFS = document.querySelector("#DFS");
+  var search = document.querySelector("#search");
+  /*缓存每一步访问的元素数组*/
+  var data = [];
+  /*定时器*/
+  var time;
+
+  /*深度遍历函数*/
+  function df(node) {
+      for (var i = 0; i < node.children.length; i++) {
+          df(node.children[i]);
+      }
+      data.push(node);
+  }
+
+  /*深度遍历按钮事件*/
+  DF.onclick = function () {
+      reset();
+      df(root);
+      render();
+  };
+  /*深度搜索按钮事件*/
+  DFS.onclick = function () {
+      reset();
+      df(root);
+      renderSearch();
+  };
+
+  /*渲染动画函数*/
+  function render() {
+      var i = 0;
+    /*计时器开始前,根节点要先变红,因为500毫秒后会被fff替代*/
+      data[0].style.backgroundColor = "red";
+      time = setInterval(function () {
+          data[i].style.backgroundColor = "#fff";
+          i++;
+          if (i < data.length) {
+              data[i].style.backgroundColor = "red";
+          } else {
+              clearInterval(time);
+          }
+      }, 200)
+  }
+
+  /*渲染搜索动画函数*/
+  function renderSearch() {
+      var i = 0;
+      var match = 0;
+    /*计时器开始前,根节点要先变红,因为500毫秒后会被fff替代*/
+      data[0].style.backgroundColor = "red";
+      time = setInterval(function () {
+          data[i].style.backgroundColor = "#fff";
+          if (data[i] &&
+              search.value &&
+              (data[i].firstChild.nodeValue.trim()).indexOf(search.value) >= 0) {
+              data[i].style.color = "red";
+              match++;
+          } else {
+              data[i].style.color = "black";
+          }
+          i++;
+          if (i < data.length) {
+              data[i].style.backgroundColor = "red";
+          } else {
+              clearInterval(time);
+              if (match == 0) {
+                  alert("一个都没找到");
+              } else {
+                  alert("找到了" + match + "个!");
+              }
+          }
+      }, 200)
+  }
+  /*清空动画函数*/
+  function reset() {
+      clearInterval(time);
+      for (var i = 0; i < data.length; i++) {
+          data[i].style.backgroundColor = null;
+          data[i].style.color = null;
+      }
+      data = [];
+  }
+
+</script>
+</body>
+</html>

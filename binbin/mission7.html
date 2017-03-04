@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IFE JavaScript Task 07</title>
+  <style>
+    .root {
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      border: 1px solid #000000;
+    }
+
+    div {
+      width: 49%;
+      box-sizing: border-box;
+      display: flex;
+      padding: 20px;
+      justify-content: space-between;
+      border: 1px solid #000000;
+      background: #fff;
+      transition: all .5s;
+    }
+    .none{
+      width: 98%;
+      justify-content:center;
+      border:none;
+    }
+  </style>
+</head>
+<body>
+<h1>IFE JavaScript Task 07</h1>
+<div class="root">
+  <div class="node-1-left">
+    <div class="node-2-left">
+      <div class="node-3-left"></div>
+      <div class="node-3-right"></div>
+    </div>
+    <div class="node-2-right">
+      <div class="node-3-left"></div>
+      <div class="node-3-right"></div>
+    </div>
+  </div>
+  <div class="node-1-right">
+    <div class="node-2-left">
+      <div class="node-3-left"></div>
+      <div class="node-3-right"></div>
+    </div>
+    <div class="node-2-right">
+      <div class="node-3-left"></div>
+      <div class="node-3-right"></div>
+    </div>
+  </div>
+</div>
+<div class="none">
+  <button id="preO">前序</button>
+  <button id="inO">中序</button>
+  <button id="postO">后序</button>
+</div>
+
+
+<script>
+  /*取得元素*/
+  var root = document.querySelector(".root");
+  var preO = document.querySelector("#preO");
+  var inO = document.querySelector("#inO");
+  var postO = document.querySelector("#postO");
+  /*缓存每一步访问的元素数组*/
+  var data = [];
+  /*定时器*/
+  var time;
+/*前序*/
+  function preOrder(node) {
+      if (node != null) {
+        data.push(node);
+        preOrder(node.firstElementChild);
+        preOrder(node.lastElementChild);
+      }
+  }
+  /*中序*/
+  function inOrder(node) {
+      if (node != null) {
+          inOrder(node.firstElementChild);
+          data.push(node);
+          inOrder(node.lastElementChild);
+      }
+  }
+  /*后序*/
+  function postOrder(node) {
+      if (node != null) {
+          postOrder(node.firstElementChild);
+          postOrder(node.lastElementChild);
+          data.push(node);
+      }
+  }
+
+  preO.onclick = function () {
+      reset();
+      preOrder(root);
+      render();
+  };
+  inO.onclick = function () {
+      reset();
+      inOrder(root);
+      render();
+  };
+  postO.onclick = function () {
+      reset();
+      postOrder(root);
+      render();
+  };
+
+  /*渲染动画函数*/
+  function render() {
+      var i = 0;
+      /*计时器开始前,根节点要先变红,因为500毫秒后会被fff替代*/
+      data[0].style.backgroundColor="red";
+      time = setInterval(function () {
+          data[i].style.backgroundColor="#fff";
+          i++;
+          if(i<data.length){
+              data[i].style.backgroundColor="red";
+          }else{
+              clearInterval(time);
+          }
+      }, 500)
+  }
+  /*清空动画函数*/
+   function reset() {
+       clearInterval(time);
+       for(var i=0;i<data.length;i++){
+           data[i].style.backgroundColor=null;
+       }
+       data=[];
+   }
+
+</script>
+</body>
+</html>

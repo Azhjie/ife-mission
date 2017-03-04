@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>多个表单项的检验</title>
+  <style>
+    p {
+      margin: 0 0 0 30px;
+      padding: 5px;
+      color: #ccc;
+      font-size: 13px;
+    }
+
+    form {
+      width: 600px;
+      margin: 0 auto;
+      text-align: center
+    }
+
+    label {
+      display: inline-block;
+      width: 65px;
+      text-align: right;
+    }
+
+    input {
+      border: none;
+      box-shadow: 0 0 2px #333;
+    }
+
+    [id^="msg"] {
+      visibility: hidden;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .error-border {
+      box-shadow: 0 0 2px red;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .success-border {
+      box-shadow: 0 0 2px green;
+    }
+  </style>
+</head>
+<body>
+<form action="mission1.html" onsubmit="return checkForm()">
+  <div>
+    <label for="name">姓名</label>
+    <input id="name" type="text" placeholder="请输入名称">
+    <p id="msgName">必填,长度为4~16个字符</p>
+  </div>
+  <div>
+    <label for="psw">密码</label>
+    <input id="psw" type="password" placeholder="请输入密码">
+    <p id="msgPsw">必填,请勿使用非法字符</p>
+  </div>
+  <div>
+    <label for="confirm">密码确认</label>
+    <input id="confirm" type="password" placeholder="请输入确认密码">
+    <p id="msgConfirm">两次输入相同密码</p>
+  </div>
+  <div>
+    <label for="email">邮箱</label>
+    <input id="email" type="email" placeholder="请输入邮箱">
+
+    <p id="msgEmail">必填,长度为4~6个字符</p>
+  </div>
+  <div>
+    <label for="cellphone">手机</label>
+    <input id="cellphone" type="tel" placeholder="请输入手机">
+    <p id="msgCellphone">必填,长度为4~6个字符</p>
+  </div>
+  <button id="btn" type="submit">提交</button>
+</form>
+
+<script>
+  /*要取很多标签,所以封装选择器*/
+  function $(el) {
+      return document.getElementById(el);
+  }
+  /*获得字符串长度函数*/
+  function getLength(str) {
+    /*[^\x00-\xff]匹配除所有单字符的字符*/
+      return str.replace(/[^\x00-\xff]/g, "xx").length;
+  }
+
+  /*获取所有元素*/
+  window.onload = function () {
+      var name = $("name");
+      var psw = $("psw");
+      var confirm = $("confirm");
+      var email = $("email");
+      var cellphone = $("cellphone");
+      var btn = $("btn");
+
+    /*获取所有提示元素*/
+      var msgName = $("msgName");
+      var msgPsw = $("msgPsw");
+      var msgConfirm = $("msgConfirm");
+      var msgEmail = $("msgEmail");
+      var msgCellphone = $("msgCellphone");
+
+    /*姓名验证*/
+      name.onfocus = function () {
+          msgName.style.visibility = "visible";
+      };
+      name.onblur = function () {
+          if (name.value == "") {
+              msgName.innerText = "姓名不能为空";
+              msgName.className = "error";
+              name.className = "error-border"
+          }
+          /*[^\w\u4e00-\u9fa5]匹配除了中文和\w的字符*/
+          else if (/[^\w\u4e00-\u9fa5]/g.test(name.value)) {
+              msgName.innerText = "含有非法字符";
+              msgName.className = "error";
+              name.className = "error-border";
+          }
+          else if (getLength(name.value) > 16) {
+              msgName.innerText = "字符长度大于6";
+              msgName.className = "error";
+              name.className = "error-border";
+          }
+          else if (getLength(name.value) < 4) {
+              msgName.innerText = "字符长度小于4";
+              msgName.className = "error";
+              name.className = "error-border";
+
+          } else {
+              msgName.innerText = "名称格式正确";
+              msgName.className = "success";
+              name.className = "success-border";
+          }
+      };
+
+    /*密码验证*/
+      psw.onfocus = function () {
+          msgPsw.style.visibility = "visible";
+          confirm.value = "";
+          confirm.className = "error-border";
+          msgConfirm.innerText = "两次输入相同密码";
+          msgConfirm.className = "error"
+      };
+      psw.onblur = function () {
+          if (psw.value == "") {
+              msgPsw.innerText = "密码不能为空";
+              msgPsw.className = "error";
+              psw.className = "error-border"
+          }
+          /*[^\w\u4e00-\u9fa5]匹配除了中文和\w的字符*/
+          else if (/[^\w\u4e00-\u9fa5]/g.test(psw.value)) {
+              msgPsw.innerText = "含有非法字符";
+              msgPsw.className = "error";
+              psw.className = "error-border";
+          }
+          else {
+              msgPsw.innerText = "密码可用";
+              msgPsw.className = "success";
+              psw.className = "success-border";
+          }
+      };
+
+    /*密码确认*/
+      confirm.onfocus = function () {
+          msgConfirm.style.visibility = "visible";
+      };
+      confirm.onblur = function () {
+          if (confirm.value == "") {
+              msgConfirm.innerText = "密码不能为空";
+              msgConfirm.className = "error";
+              confirm.className = "error-border"
+          }
+          /*[^\w\u4e00-\u9fa5]匹配除了中文和\w的字符*/
+          else if (/[^\w\u4e00-\u9fa5]/g.test(confirm.value)) {
+              msgConfirm.innerText = "含有非法字符";
+              msgConfirm.className = "error";
+              confirm.className = "error-border";
+          }
+          else if (confirm.value != psw.value) {
+              msgConfirm.innerText = "密码不一致";
+              msgConfirm.className = "error";
+              confirm.className = "error-border";
+          }
+          else {
+              msgConfirm.innerText = "密码可用";
+              msgConfirm.className = "success";
+              confirm.className = "success-border";
+          }
+      };
+
+    /*邮箱验证*/
+      email.onfocus = function () {
+          msgEmail.style.visibility = "visible";
+      };
+      email.onblur = function () {
+          if (/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$/.test(email.value)) {
+              msgEmail.innerText = "邮箱可用";
+              msgEmail.className = "success";
+              email.className = "success-border";
+          }
+          else {
+              msgEmail.innerText = "邮箱格式错误";
+              msgEmail.className = "error";
+              email.className = "error-border"
+          }
+      };
+
+    /*手机验证*/
+      cellphone.onfocus = function () {
+          msgCellphone.style.visibility = "visible";
+      };
+      cellphone.onblur = function () {
+          if (/^[\d]{11}$/.test(cellphone.value)) {
+              msgCellphone.innerText = "手机可用";
+              msgCellphone.className = "success";
+              cellphone.className = "success-border";
+          }
+          else {
+              msgCellphone.innerText = "手机格式错误";
+              msgCellphone.className = "error";
+              cellphone.className = "error-border"
+          }
+      };
+  };
+
+  function checkForm(){
+      var count=0;
+      var form=document.querySelector("form");
+      var aInput=form.getElementsByTagName("input");
+      for(var i=0;i<aInput.length;i++){
+          if (aInput[i].className =="success-border"){
+              count++;
+          }
+      }
+      console.log(count);
+      if(count==5){
+
+          alert("成功");
+          return true;
+      }else{
+          alert("再检测一下");
+          return false;
+      }
+
+  }
+
+
+
+</script>
+</body>
+</html>

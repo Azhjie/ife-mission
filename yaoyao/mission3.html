@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>表单联动</title>
+  <style>
+      select{
+        margin:0 5%;
+        width: 20%;
+      }
+      .school select, .work input{
+        height:50px;
+      }
+      .work input{
+        margin: 0 10px;
+        width: 50%;
+      }
+    .type {
+      padding-top:100px ;
+      text-align: center;
+    }
+
+    .work {
+      display: none;
+    }
+     .work, .school,.type span {
+      padding:100px 5%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="type">
+    <span><input id="student" type="radio" name="aa" checked onclick="toggle()"><label for="student">在校生</label></span>
+    <span><input id="nonStudent" type="radio" name="aa" onclick="toggle()"><label for="nonStudent">非在校生</label></span>
+  </div>
+  <div class="school">
+    <label for="city">学校</label><select title="city" id="city"></select><select title="college" id="college"></select>
+  </div>
+  <div class="work">
+    <label for="company">就业单位</label><input id="company" type="text">
+  </div>
+</div>
+
+<script>
+    var student = document.getElementById("student");
+    var nonStudent = document.getElementById("nonStudent");
+    var school = document.querySelector(".school");
+    var work = document.querySelector(".work");
+
+    /*下拉框*/
+    var city = document.getElementById("city");
+    var college=document.getElementById("college");
+
+    /*模拟数据*/
+    var data = [
+        {name: "深圳", list: ["深圳职业技术学院", "深圳南方科技大学", "深圳信息技术学院"]
+        },
+        {name: "惠州", list: ["惠州经济职业技术学院", "惠州学院"]
+        },
+        {name: "梅州", list: ["梅州嘉应大学", "大麻中学", "田家炳第三中学"]}
+    ];
+
+    /*切换表单*/
+    function toggle() {
+        school.style.display="none";
+        work.style.display="none";
+        if(student.checked){
+            school.style.display="block";
+        }else{
+            work.style.display="block";
+        }
+    }
+
+
+    window.onload = function () {
+        /*学校选择函数*/
+       for(var i=0;i<data.length;i++){
+           /*遍历数据,插入城市列表*/
+           var op=new Option(data[i].name,data[i].name);
+           city.add(op);
+       }
+        loadCollege();
+
+        /*检测城市的改变*/
+        city.onchange=function () {
+            loadCollege();
+        };
+    };
+
+    /*加载学校的函数*/
+    function loadCollege() {
+        var index=city.options[city.selectedIndex].index;
+        var collegeList=data[index].list;
+        college.innerHTML="";
+        for(var i=0;i<collegeList.length;i++){
+            var op=new Option(collegeList[i],collegeList[i]);
+            college.add(op);
+        }
+    }
+</script>
+</body>
+</html>

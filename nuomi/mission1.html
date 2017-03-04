@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>有趣的鼠标悬浮模糊效果</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh
+    }
+
+    /*文字渐变动画*/
+    @keyframes Gradients {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: -100% 0;
+      }
+    }
+
+    /*hover动画*/
+    figure:hover img {
+      filter: blur(3px);
+    }
+
+    figure:hover .title {
+      opacity: 1;
+    }
+
+    figure:hover .title::before {
+      visibility: visible;
+      height: 100%;
+      top: 0;
+
+    }
+
+    figure:hover .title::after {
+      visibility: visible;
+      width: 100%;
+      left: 0;
+
+    }
+
+    /*边框动画*/
+    figure figcaption .title::before, figure figcaption .title::after {
+      overflow: hidden;
+      visibility: hidden;
+      content: '';
+      position: absolute;
+      border: 3px solid white;
+      transition: all .5s
+    }
+
+    figure figcaption .title::before {
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 0;
+      border-width: 0 3px;
+    }
+
+    figure figcaption .title::after {
+      left: 50%;
+      top: 0;
+      width: 0;
+      height: 100%;
+      border-width: 3px 0;
+    }
+
+    /*布局*/
+    figure {
+      position: relative;
+    }
+
+    figure figcaption {
+      position: absolute;
+      padding: 30px;
+      width: 100%;
+      height: 100%;
+
+      z-index: 1;
+    }
+
+    figure figcaption .title {
+      position: relative;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      transition: all .8s;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    figure figcaption h1, figure figcaption a {
+      background: -webkit-linear-gradient(left, red, purple, red, purple, red);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: Gradients 5s infinite linear;
+    }
+
+    figure figcaption a {
+      z-index: 1;
+    }
+
+    figure img {
+      width: 100%;
+      height: 100%;
+      transition: filter .5s, -webkit-filter .5s;
+    }
+  </style>
+</head>
+<body>
+<figure>
+  <figcaption>
+    <div class="title">
+      <h1>是谁~送你来到我身边</h1>
+      <a href="https://github.com/Azhjie">Github,@Azhjie</a>
+    </div>
+  </figcaption>
+  <img src="https://gss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/728da9773912b31b6805d2d68118367adbb4e1e0.jpg"
+       alt="">
+</figure>
+
+</body>
+</html>

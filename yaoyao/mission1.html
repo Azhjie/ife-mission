@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>单个表单项的检验</title>
+  <style>
+    p{
+      margin: 0;
+      padding: 5px;
+      color: #ccc;
+      font-size: 13px;
+    }
+    input{border: none;box-shadow: 0 0 2px #333;}
+    .error{
+      color: red;
+    }
+    .success{
+      color: green;
+    }
+    .error-border{box-shadow: 0 0 2px red;}
+    .success-border{box-shadow: 0 0 2px green;  }
+  </style>
+</head>
+<body>
+<form action="#" onsubmit="checkForm(this)">
+  <label for="name">姓名</label>
+  <input id="name" type="text" placeholder="请输入名称">
+  <button type="submit">提交</button>
+  <p id="msg">必填,长度为4~6个字符</p>
+</form>
+
+<script>
+
+    /*获得字符串长度函数*/
+    function getLength(str) {
+        /*[^\x00-\xff]匹配除所有单字符的字符*/
+        return str.replace(/[^\x00-\xff]/g,"xx").length;
+    }
+
+    function checkForm(){
+        var msg=document.querySelector("#msg");
+        var name=document.querySelector("#name");
+
+      if(name.value==""){
+          msg.innerText="姓名不能为空";
+          msg.className="error";
+          name.className="error-border"
+      }
+      /*[^\w\u4e00-\u9fa5]匹配除了中文和\w的字符*/
+      else if (/[^\w\u4e00-\u9fa5]/g.test(name.value)){
+          msg.innerText="含有非法字符";
+          msg.className="error";
+          name.className="error-border";
+      }
+      else if(getLength(name.value)>16){
+          msg.innerText="字符长度大于6";
+          msg.className="error";
+          name.className="error-border";
+      }
+      else if(getLength(name.value)<2){
+          msg.innerText="字符长度小于2";
+          msg.className="error";
+          name.className="error-border";
+
+      }else{
+          msg.innerText="名称格式正确";
+          msg.className="success";
+          name.className="success-border";
+      }
+    }
+</script>
+</body>
+</html>
